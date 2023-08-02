@@ -5,7 +5,7 @@ class Flight():
     
   def add_passenger(self, name):
     if not self.open_seats():
-      print("capacity is full. ")
+      print(f"no available seats for {name}")
     else:
       self.passengers.append(name)
       print(f"{name} added. ")
