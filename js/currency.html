@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>currency</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").onsubmit = function () {
+          fetch("https://cdn.moneyconvert.net/api/boa.json")
+            .then((response) => response.json())
+            .then((data) => {
+              const currency = document.querySelector("#currency").value.toUpperCase();
+              const rate = data.rates[currency];
+              if (rate !== undefined) {
+                document.querySelector(
+                  "#result"
+                ).innerHTML = `1 USD is equel to ${rate.toFixed(
+                  4
+                )} ${currency}.`;
+              } else {
+                document.querySelector("#result").innerHTML =
+                  "Invalid Currency";
+              }
+            })
+          .catch(error => {
+            console.log('Error: ', error)
+          })
+
+          return false;
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" placeholder="Currency" id="currency" />
+      <input type="submit" value="Convert" />
+    </form>
+
+    <div id="result"></div>
+  </body>
+</html>
