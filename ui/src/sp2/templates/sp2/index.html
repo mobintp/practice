@@ -1,0 +1,35 @@
+{% extends 'sp2/layout.html' %} {% block ss %}
+<script>
+
+  window.onpopstate = function() {
+    console.log(event.state.section);
+    showSection(event.state.section);
+  }
+
+  function showSection(section) {
+    fetch(`/sp2/sections/${section}`)
+      .then(response => response.text())
+      .then(text => {
+        console.log(text);
+        document.querySelector("#content").innerHTML = text;
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("button").forEach((button) => {
+      button.onclick = function () {
+        const section = this.dataset.section;
+        history.pushState({section: section}, "", `section${section}`)
+        showSection(section);
+      };
+    });
+  });
+</script>
+{% endblock ss %} {% block body %}
+<h1>Hello!</h1>
+<button data-section="1">Section 1</button>
+<button data-section="2">Section 2</button>
+<button data-section="3">Section 3</button>
+
+<div id="content"></div>
+{% endblock body %}
