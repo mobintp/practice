@@ -1,7 +1,7 @@
 {% extends 'sp2/layout.html' %} {% block ss %}
 <script>
 
-  window.onpopstate = function() {
+  window.onpopstate = function(event) {
     console.log(event.state.section);
     showSection(event.state.section);
   }

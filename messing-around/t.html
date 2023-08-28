@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=       , initial-scale=1.0">
+  <title>test</title>
+  <style>
+    #app {
+      align-items: center;
+      vertical-align: baseline;
+    }
+    button {
+      align-items: center;
+      vertical-align: baseline;
+
+    }
+    h1 {
+      font-size: 72px;
+      
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button onclick="countUp()">count up</button>
+    <button onclick="countDown()">count down</button>
+    <h1>0</h1>
+  </div>
+
+  <script>
+    let count = 0;
+    function countUp() {
+      count ++;
+      document.querySelector('h1').innerHTML = count;
+    }
+    function countDown() {
+      count --;
+      document.querySelector('h1').innerHTML = count;
+    }
+  </script>
+</body>
+</html>
